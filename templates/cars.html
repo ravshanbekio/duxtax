@@ -1,0 +1,108 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+<link rel="apple-touch-icon" sizes="180x180" href="{% static 'apple-touch-icon.png' %}">
+<link rel="shortcut icon" type="image/png" sizes="32x32" href="{% static 'favicon-32x32.png' %}">
+<link rel="shortcut icon" type="image/png" sizes="16x16" href="{% static 'favicon-16x16.png' %}">
+<link rel="manifest" href="{% static 'site.webmanifest' %}">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Car Import Cost Calculator</title>
+<style>
+  body, html {
+    height: 100%;
+    margin: 0;
+    font-family: Arial, sans-serif;
+  }
+  .gradient-background {
+    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab, #ffafbd, #ffc3a0);
+    background-size: 400% 400%;
+    animation: gradientBG 30s ease infinite;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+  @keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+  .calculator-form {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    max-width: 350px;
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+  }
+  input, select {
+    width: 100%;
+    padding: 15px;
+    margin-top: 15px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-sizing: border-box;
+    font-size: 16px;
+  }
+  button {
+    width: 100%;
+    padding: 15px;
+    border: none;
+    background-color: #5cb85c;
+    color: white;
+    margin-top: 30px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 18px;
+  }
+  button:hover {
+    background-color: #4cae4c;
+  }
+  @media screen and (max-width: 600px) {
+    .calculator-form {
+      width: 90%;
+      padding: 20px;
+    }
+    input, select, button {
+      padding: 10px;
+      font-size: 14px;
+    }
+  }
+  @media screen and (min-width: 900px) {
+    .calculator-form {
+      width: 50%;
+    }
+  }
+  @media screen and (min-width: 1200px) {
+    .calculator-form {
+      width: 30%;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="gradient-background"></div>
+
+<form class="calculator-form" method="post">{% csrf_token %}
+  {% if messages %}
+    {% for result in messages %}
+      {{ result }}
+    {% endfor %}
+  {% else %}
+    <h2>Import qilinadigan mashina narxini hisoblash</h2>
+    {{ form.as_p }}
+    <button type="submit">Calculate</button>
+  {% endif %}
+</form>
+
+</body>
+</html>
