@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-o03wb1#!8=l#iq&*ccxv#kn-a5#vm#!(3i5-uu1cgu$=__vop*'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['https://duxtax.pythonanywhere.com/','https://duxtax.pythonanywhere.com']
 
