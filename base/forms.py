@@ -14,7 +14,7 @@ class CarForm(forms.ModelForm):
         }
 
         widgets = {
-            'price':forms.NumberInput(attrs={'placeholder':'Mashina narxi'}),
+            'price':forms.NumberInput(attrs={'placeholder':'Mashina narxi (USD)'}),
             'year':forms.Select(attrs={'placeholder':'Ishlab chiqarilgan yil'}),
             'size_of_engine':forms.Select(attrs={'placeholder':'Davlatni tanlang'}),
             'type_of_car':forms.Select(attrs={'placeholder':'Mashina turini tanlang'})
