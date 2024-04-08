@@ -63,6 +63,7 @@ class TempUser(models.Model):
     is_pc = models.BooleanField(default=False)
     is_bot = models.BooleanField(default=False)
     ip_address = models.GenericIPAddressField()
+    added_date = models.DateTimeField(auto_now_add=True)
 
     class Meta:
         verbose_name_plural = "Temporary users"
