@@ -121,10 +121,7 @@
     <form class="calculator-form" method="post">
     {% csrf_token %}
     <h3>Dastur rivojlanishi uchun mashinaning qo'shimcha ma'lumotlarini kiriting</h3>
-        <label for="car_make">Mashina rusumini tanlang:</label>
-        <input type="text" name="car_make" id="car_make"><br>
-        <label for="car_model">Mashina:</label>
-        <input type="text" name="car_model" id="car_model"><br>
+        {{ form.as_p }}
         <button type="submit">Saqlash</button>
     </form>
     <!-- Yandex.RTB R-A-7300629-5 -->

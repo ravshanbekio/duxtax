@@ -1,8 +1,7 @@
 from django.shortcuts import render, redirect
-from django.contrib import messages
 from django.views import View
 import datetime
-from .forms import CarForm
+from .forms import CarForm, CarModelForm
 from .models import Car
 
 class DashboardView(View):
@@ -80,11 +79,16 @@ class CarModelView(View):
 class Car2ModelView(View):
     def get(self, request,car_id):
         car = Car.objects.get(pk=car_id)
-        return render(request, 'car-add-details.html',{'car_id':car})
+        form = CarModelForm
+        return render(request, 'car-add-details.html',{'form':form,'car_id':car})
 
     def post(self, request, car_id):
         car = Car.objects.get(pk=car_id)
-        car.make = request.POST.get('car_make')
-        car.model = request.POST.get('car_model')
-        car.save()
+        form = CarModelForm(request.POST or None)
+        if form.is_valid():
+            make = form.cleaned_data.get('make')
+            model = form.cleaned_data.get('model')
+            car.make = make
+            car.model = model
+            car.save()
         return redirect('car_details', car_id=car_id)
