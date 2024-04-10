@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Car Import Cost Calculator</title>
+    <title>Duxtax - Bojxona harajatlarini hisoblash</title>
     <link rel="apple-touch-icon" sizes="180x180" href="{% static 'apple-touch-icon.png' %}">
     <link rel="shortcut icon" type="image/png" sizes="32x32" href="{% static 'favicon-32x32.png' %}">
     <link rel="shortcut icon" type="image/png" sizes="16x16" href="{% static 'favicon-16x16.png' %}">
@@ -118,18 +118,14 @@
 <body>
 
     <div class="gradient-background"></div>
-
     <form class="calculator-form" method="post">
-        {% csrf_token %}
-        {% if messages %}
-        {% for result in messages %}
-        {{ result }}
-        {% endfor %}
-        {% else %}
-        <h2>Import qilinadigan mashina narxini hisoblash</h2>
-        {{ form.as_p }}
-        <button type="submit">Hisoblash</button>
-        {% endif %}
+    {% csrf_token %}
+    <h3>Dastur rivojlanishi uchun mashinaning qo'shimcha ma'lumotlarini kiriting</h3>
+        <label for="car_make">Mashina rusumini tanlang:</label>
+        <input type="text" name="car_make" id="car_make"><br>
+        <label for="car_model">Mashina:</label>
+        <input type="text" name="car_model" id="car_model"><br>
+        <button type="submit">Saqlash</button>
     </form>
     <!-- Yandex.RTB R-A-7300629-5 -->
     <script>

@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Car Import Cost Calculator</title>
+    <title>{{ car.make }} {{ car.model }}</title>
     <link rel="apple-touch-icon" sizes="180x180" href="{% static 'apple-touch-icon.png' %}">
     <link rel="shortcut icon" type="image/png" sizes="32x32" href="{% static 'favicon-32x32.png' %}">
     <link rel="shortcut icon" type="image/png" sizes="16x16" href="{% static 'favicon-16x16.png' %}">
@@ -118,19 +118,12 @@
 <body>
 
     <div class="gradient-background"></div>
-
-    <form class="calculator-form" method="post">
-        {% csrf_token %}
-        {% if messages %}
-        {% for result in messages %}
-        {{ result }}
-        {% endfor %}
-        {% else %}
-        <h2>Import qilinadigan mashina narxini hisoblash</h2>
-        {{ form.as_p }}
-        <button type="submit">Hisoblash</button>
-        {% endif %}
-    </form>
+    <div class="calculator-form">
+        <h3>{{ car.make }} {{ car.model }} mashinasining bojxona harajatlari</h3>
+        <p>Mashina narxi: {{ car.price }}</p>
+        <p>Umumiy summa: {{ car.result_price }}</p>
+        <p>Qo'shilgan boj: {{ fee }}</p>
+    </div>
     <!-- Yandex.RTB R-A-7300629-5 -->
     <script>
         window.yaContextCb.push(() => {

@@ -82,7 +82,6 @@ class Car(models.Model):
         ("2000cm dan - 3000cm gacha","2000cm dan - 3000cm gacha"),
         ("3000cm dan - 3500cm gacha","3000cm dan - 3500cm gacha"),
         ("3500cm dan katta","3500cm dan katta")
-        #("3000cm dan katta","3000cm dan katta")
     ])
     type_of_car = models.CharField(max_length=20, choices=[
         ("Benzin-Dizel","Benzin-Dizel"),

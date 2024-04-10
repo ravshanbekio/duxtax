@@ -1,9 +1,9 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
 from django.contrib import messages
 from django.views import View
 import datetime
 from .forms import CarForm
+from .models import Car
 
 class DashboardView(View):
     def get(self,request):
@@ -66,8 +66,25 @@ class DashboardView(View):
                 fee = (cost * 0.12) + bhm
                 fee += cost * 0.002
                 result = cost + fee
-        form.save()
-        messages.success(request, f"Mashina narxi: {cost}")
-        messages.success(request, f"Umumiy narxi: {result}")
-        messages.success(request, f"Qo'shilgan summa: {fee}")
-        return redirect('dashboard')
+        car = form.save(commit=False)
+        car.result_price = result
+        car.save()
+        return redirect('car_make_model', car_id=car.pk)
+
+class CarModelView(View):
+    def get(self, request, car_id):
+        car = Car.objects.get(pk=car_id)
+        fee = car.result_price-car.price
+        return render(request, 'car-detail.html',{'car':car,'fee':fee}) 
+
+class Car2ModelView(View):
+    def get(self, request,car_id):
+        car = Car.objects.get(pk=car_id)
+        return render(request, 'car-add-details.html',{'car_id':car})
+
+    def post(self, request, car_id):
+        car = Car.objects.get(pk=car_id)
+        car.make = request.POST.get('car_make')
+        car.model = request.POST.get('car_model')
+        car.save()
+        return redirect('car_details', car_id=car_id)
